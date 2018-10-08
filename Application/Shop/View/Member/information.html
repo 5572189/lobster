@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="renderer" content="webkit">
+    <title>PIZZAgram.</title>
+    <link rel="stylesheet" href="/webApp/static/style/css/default/main.css">
+    <link rel="stylesheet" href="/webApp/static/style/css/page/personal/personalInfor.css">
+
+</head>
+<body>
+<div id="app">
+    <div class="content" v-cloak>
+        <h2>Personal information</h2>
+        <div class="table-wrap">
+            <div class="item"></div>
+            <div class="item">
+                <span v-html="'<em>'+pageData.card_level_name+'</em>'+pageData.card_level_name_en"></span>
+                <span @click="goUrl('/shop.php/member/collaboration_platforms')"><em>如何升级</em><em>How to upgrade></em></span>
+                <span v-html="'姓名：'+pageData.nickname+'<br>Name：'+pageData.nickname">--<br>--</span>
+                <span v-html="'手机号码：'+pageData.mobile+'<br>Phone：'+pageData.mobile">--<br>--</span>
+                <span>我的余额 My balance<br><em v-html="pageData.score+'RMB'"></em></span>
+                <span @click="goUrl('{$nsWebHost}/shop.php?s=/pizza/recharge')"><em>去储值</em><em>Reserve value></em></span>
+            </div>
+        </div>
+        <div class="out" @click="logout">退出</div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var _data = {$pageData};
+    var uid = '{$uid}';
+    var uCode = '{$uCode}';
+    var nsWebHost = '{$nsWebHost}';
+    var jsapi = {$jsapi};
+</script>
+<script src="/webApp/require.js"></script>
+<script src="/webApp/static/script/personal/inforMation.js"></script>
+

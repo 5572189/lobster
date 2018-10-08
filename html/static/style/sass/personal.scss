@@ -1,0 +1,59 @@
+@import "component/variable";
+[v-cloak]{
+    display: none;
+}
+#app {
+    position: fixed;
+    left: 50%;
+    margin-left: to_rem(-375);
+    background: url("../../images/index_bg.jpg" + $clear_web) center top no-repeat;
+    background-size: cover;
+    max-width:to_rem(750);
+    width: 100%;
+}
+.xia_bg{
+    width: to_rem(270);
+    height: to_rem(97);
+    margin: to_rem(60) auto;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+.personal{
+    width: to_rem(585);
+    margin: 0 auto;
+    padding-bottom: to_rem(30);
+    border-bottom: 1px solid #a7a9ad;
+    .personal_header{
+        width: to_rem(238);
+        height: to_rem(238);
+        display: block;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+    .personal_name{
+        font-size: to_rem(28);
+        color: #dbdbdb;
+        text-align: center;
+        line-height: to_rem(50);
+        margin-top: to_rem(30);
+    }.personal_phone{
+        font-size: to_rem(24);
+        color: #b1b1b1;
+        text-align: center;
+        line-height: to_rem(50);
+    }
+}
+.personal_logout{
+    display: block;
+    width: to_rem(585);
+    height: to_rem(90);
+    line-height: to_rem(90);
+    text-align: center;
+    margin: to_rem(60) auto;
+    font-size: to_rem(27);
+    color: #dbdbdb;
+    background: #95060c;
+    border: 1px solid #fff;
+}

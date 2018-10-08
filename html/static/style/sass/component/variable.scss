@@ -1,0 +1,16 @@
+
+//to_rem
+@function to_rem($px) {
+  @return  ($px / 2 / 19.962)+rem;
+}
+//font
+@mixin _font_common_style($f, $l){
+  font-size: to_rem($f);
+  text-align: center;
+  line-height: to_rem($l);
+}
+
+$clear_web: "?t=20180611";
+
+
+

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="renderer" content="webkit">
+    <title>PIZZAgram.</title>
+    <link rel="stylesheet" href="/webApp/static/style/css/default/main.css">
+    <link rel="stylesheet" href="/webApp/static/style/css/page/personal/index.css">
+</head>
+<body>
+<div id="app">
+    <!--alert-->
+    <div class="rule-alert" v-cloak v-if="ruleAlertStatus">
+        <div class="content" v-if="ruleAlertStatus">
+            <span class="title">优惠活动Promotions</span>
+            <div class="text rule-text">
+                <span>
+                    累计消费满500克赠送免费饮料1杯<br>
+                    <em>Cumulative spending over 500 grams complimentary drink 1 cup</em>
+                </span>
+                <span>
+                    累计消费满1000克赠送免费冰淇淋1个<br>
+                    <em>Cumulative spending over 1000 grams complimentary free ice cream 1</em>
+                </span>
+                <span>
+                    累计消费满10000克赠送免费披萨1个<br>
+                    <em>Cumulative spending over 10,000 grams gift free pizza 1</em>
+                </span>
+            </div>
+            <div class="btn" @click="ruleAlertStatus = false">知道了/OK</div>
+        </div>
+    </div>
+    <div class="rule-alert" v-cloak v-if="convertAlertStatus">
+        <div class="content" v-if="convertAlertStatus">
+            <span class="title convert-title">如何兑换 HOW TO EXCHANGE</span>
+            <div class="text convert-text">
+                <span>
+                    购买指定活动商品，1克披萨=1积分，活动详情请咨询店员。<br>
+                    <em>
+                        How many grams of pizza to buy for a given event will be delivered, for event details, please consult your clerk
+                    </em>
+                </span>
+            </div>
+            <div class="btn" @click="convertAlertStatus = false">知道了/OK</div>
+        </div>
+    </div>
+    <!--end-->
+    <div class="content" v-cloak>
+        <div class="header">
+            <div class="item">
+                <span>
+                    累计积分<br>Your Grams
+                </span>
+                <span v-text="pageData.score+'g'"></span>
+
+            </div>
+            <div class="item" @click="ruleAlertStatus = true">
+                <span><<<</span><br>
+                <span class="underline">How to get</span><br>
+                <span class="underline">如何获取</span>
+            </div>
+        </div>
+        <div class="btm-content">
+            <div class="exchange-text">
+                <div class="left" @click="convertAlertStatus = true"><span>How to exchange<br>
+                    如何兑换>>></span></div>
+                <div class="right"><span>您可以兑换以下赠品<br>
+                    <em>You can redeem the following gifts</em></span></div>
+            </div>
+            <div class="exchange-do">
+                <div class="item">
+                    <span class="num" v-text="pageData.pizza[0]"></span>
+                    <span class="name">Pizza</span>
+                    <span class="weight" v-html="pageData.pizza[1]+'g'">-</span>
+                </div>
+                <div class="item">
+                    <span class="num" v-text="pageData.icecream[0]"></span>
+                    <span class="name">Ice Cream</span>
+                    <span class="weight" v-html="pageData.icecream[1]+'g'">-</span>
+                </div>
+                <div class="item">
+                    <span class="num" v-text="pageData.drink[0]"></span>
+                    <span class="name">Drinks</span>
+                    <span class="weight" v-html="pageData.drink[1]+'g'">-</span>
+                </div>
+            </div>
+            <div class="classfiy">
+                <div class="red" @click="skip(1)">
+                    <span>Expenses Record</span>
+                    <span>消费记录</span>
+                </div>
+                <div class="black"  @click="skip(2)">
+                    <span>Personal center</span>
+                    <span>个人中心</span>
+                </div>
+            </div>
+            <div class="classfiy">
+                <div class="black"  @click="skip(3)">
+                    <span>Coupon</span>
+                    <span>优惠券</span>
+                </div>
+                <div class="red"  @click="skip(4)">
+                    <span>Cooperation Platform</span>
+                    <span>合作平台</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer-component current="4"></footer-component>
+</div>
+</body>
+</html>
+<script>var _data = {$pageData}</script>
+<script src="/webApp/require.js"></script>
+<script src="/webApp/static/script/personal/index.js"></script>

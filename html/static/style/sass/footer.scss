@@ -1,0 +1,118 @@
+@import "component/variable";
+
+#footer{
+  max-width: to_rem(750);
+  width: 100%;
+  position: fixed;
+  height: to_rem(110);
+  bottom: 0;
+  left: 50%;
+  margin-left: - to_rem(375);
+  z-index: 9998;
+  background: url(../../images/foot_bg.jpg) no-repeat;
+  background-size: cover;
+  .footer-item{
+    width: 20%;
+    height: to_rem(110);
+    float: left;
+    span{
+      text-align: center;
+      font-size: to_rem(20);
+      color: #888888;
+      display: block;
+      padding-top: to_rem(65);
+    }
+    &:nth-child(1){
+        background: url("../../images/footer/footer_about_icon.png" + $clear_web) center to_rem(17) no-repeat;
+      background-size: to_rem(60) to_rem(40);
+
+    }
+    &:nth-child(2){
+      background: url("../../images/footer/footer_menu_icon.png" + $clear_web) center to_rem(17) no-repeat;
+      background-size: to_rem(36) to_rem(39);
+    }
+    &:nth-child(3){
+      position: relative;
+      width: 20%;
+      .logo{
+        position: absolute;
+        display: inline-block;
+        width: 100%;
+        padding: 0;
+        height: to_rem(143);
+        top: to_rem(-44);
+        background: url("../../images/footer/footer_center_icon.png" + $clear_web) center top no-repeat;
+        background-size: contain;
+      }
+      .logo_animation{
+        position: absolute;
+        display: inline-block;
+        width: 100%;
+        padding: 0;
+        height: to_rem(110);
+        top: to_rem(-15);
+        background: url("../../images/footer/f_bg.png" + $clear_web) center top no-repeat;
+        background-size: contain;
+        .xiaL{
+          position: absolute;
+          width: to_rem(72);
+          height: to_rem(66);
+          left: 28%;
+          top: -9%;
+          background: url("../../images/footer/f_xiaL.png" + $clear_web) center top no-repeat;
+          background-size: contain;
+
+          transform-origin: bottom left;
+          animation: swL 4s  infinite;
+        }
+        .xiaH{
+          position: absolute;
+          width: to_rem(110);
+          height: to_rem(146);
+          left: 15%;
+          top: -30%;
+          background: url("../../images/footer/f_xiaH.png" + $clear_web) center top no-repeat;
+          background-size: contain;
+        }
+        .xiaR{
+          position: absolute;
+          width: to_rem(66);
+          height: to_rem(75);
+          left: 43%;
+          top: -7%;
+          background: url("../../images/footer/f_xiaR.png" + $clear_web) center top no-repeat;
+          background-size: contain;
+          transform-origin: bottom left;
+          animation: swR 4s  infinite;
+        }
+      }
+    }
+    &:nth-child(4){
+      background: url("../../images/footer/footer_home_icon.png" + $clear_web) center to_rem(17) no-repeat;
+      background-size: to_rem(41) to_rem(39);
+    }
+    &:nth-child(5){
+      background: url("../../images/footer/footer_me_icon.png" + $clear_web) center to_rem(17) no-repeat;
+      background-size: to_rem(36) to_rem(39);
+    }
+  }
+  .active{
+        span{
+          color: #fff;
+          border-bottom: 5px solid #ce2939;
+          padding-bottom: to_rem(2);
+        }
+      }
+}
+
+@keyframes swR {
+  0% {    transform: rotate(0deg);  }
+  50% {    transform: rotate(15deg);  }
+  100% {    transform: rotate(0deg);  }
+}
+
+@keyframes swL {
+  0% {    transform: rotate(0deg);  }
+  50% {    transform: rotate(-20deg);  }
+  100% {    transform: rotate(0deg);  }
+}

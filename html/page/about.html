@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="renderer" content="webkit">
+    <title>TP</title>
+    <!--css-->
+    <link rel="stylesheet" href="../static/style/css/main.css">
+    <link rel="stylesheet" href="../static/style/css/about.css">
+</head>
+<body>
+<div id="app" v-cloak>
+    <img class="top-img" src="../static/images/about_header_img.png" alt="">
+    <img class="top-img" src="../static/images/about_ctn_img.png" alt="">
+    <img class="top-img"  src="../static/images/about_vedio_header.png" alt="">
+    <div class="video">
+        <video>
+            <source src="../static/vedio/noyang.mp3" type="video/mp4">
+            您的浏览器不支持 video 标签。
+        </video>
+        <span class="tart-video"></span>
+    </div>
+    <img class="top-img"  src="../static/images/about_container_header_img.png" alt="">
+    <div class="slide-container">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="../static/images/12121212.png" alt="">
+                    <span class="address"><em>北京市朝阳区东大桥路9号楼B2层（B217侨福芳草地LG2-13单元</em></span>
+                </div>
+                <div class="swiper-slide">
+                    <img src="../static/images/12121212.png" alt="">
+                    <span class="address"><em>（-13单元</em></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer-component current = "1"></footer-component>
+</div>
+</body>
+</html>
+
+<script src="../require.js"></script>
+<script src="../static/script/about.js"></script>

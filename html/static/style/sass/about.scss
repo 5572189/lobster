@@ -1,0 +1,48 @@
+@import "component/variable";
+[v-cloak]{
+    display: none;
+}
+#app {
+    background: url("../../images/index_bg.jpg" + $clear_web) center top no-repeat;
+    background-size: cover;
+    max-width:to_rem(750);
+    width: 100%;
+    margin: 0 auto;
+}
+.about_banner{
+    width: 100%;
+    video{
+        max-width: to_rem(750);
+        width: 100%;
+        height: auto;
+    }
+}
+.about_me{
+    width: 100%;
+    .about_me_title{
+        width: 100%;
+        height: to_rem(43);
+        padding: to_rem(50) 0;
+        img{
+            width: 100%;
+            height: to_rem(43);
+        }
+    }
+    .about_message{
+        width: to_rem(600);
+        margin: 0 auto;
+        .icons_news{
+            display: block;
+            width: to_rem(50);
+            height: to_rem(8);
+            background: red;
+            margin: to_rem(20) auto;
+        }
+        p{
+            font-size: to_rem(26);
+            color: #fff;
+            line-height: to_rem(50);
+            text-align: justify;
+        }
+    }
+}

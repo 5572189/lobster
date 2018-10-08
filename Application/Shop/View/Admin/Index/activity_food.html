@@ -1,0 +1,135 @@
+<extend name="$_admin_public_layout" />
+<block name="style">
+	<style>
+		.form-inline .form-group{
+			margin-right: 12px;
+			margin-bottom: 15px;
+		}
+		.form-inline .btn{
+			margin-bottom: 15px;
+		}
+	</style>
+</block>
+<block name="script">
+	<script type="text/javascript" src="/Public/libs/bootstrap-daterangepicker/moment.min.js"></script>
+	<script type="text/javascript" src="/Public/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+</block>
+<block name="style">
+	<link rel="stylesheet" type="text/css" href="/Public/libs/bootstrap-daterangepicker/daterangepicker.css">
+</block>
+<block name="main">
+	<!-- 主体内容区域 -->
+	<div class="tab-content ct-tab-content">
+		<div class="builder formbuilder-box panel-body">
+			<div class="form-group"></div>
+			<!-- 顶部工具栏按钮 -->
+			<div class="builder-toolbar">
+					<div class="row">
+						<!-- 工具栏按钮 -->
+						<div class="col-xs-12 col-sm-2 button-list clearfix">
+							<div class="form-group">
+								<a title="新增" class="btn btn-primary" href="/admin.php?s=/shop/index/activity_food_add/id/3.html">新增</a>&nbsp;                        </div>
+						</div>
+						<!-- 搜索框 -->
+						<div class="col-xs-12 col-sm-10 clearfix">
+							<form class="form form-inline" method="get" action="/admin.php?s=/shop/index/activity_food">
+								<style>
+									.form-inline .form-group{
+										margin-right: 12px;
+										margin-bottom: 15px;
+									}
+									.form-inline .btn{
+										margin-bottom: 15px;
+									}
+								</style>
+								<div class="form-group hidden item_id ">
+									<label class="left control-label">分类：</label>
+									<div class="right">
+										<input type="hidden" class="form-control input" name="id" value="{$id}">
+									</div>
+								</div>
+
+								<div class="form-group item_type_name ">
+									<label class="left control-label">状态</label>
+									<select name="status" class="form-control cui-select select">
+										<option value="" <if condition="$status heq ''">selected</if>>全部</option>
+										<option value="0" <if condition="$status heq '0'">selected</if> >禁用</option>
+										<option value="1" <if condition="$status heq '1'">selected</if>>启用</option>
+									</select>
+								</div>
+								<div class="form-group item_type_name ">
+									<label class="left control-label">分类</label>
+									<select name="type_name" class="form-control cui-select select">
+										<option value="" <if condition="$type_name heq ''">selected</if>>全部</option>
+										<option value="汉堡" <if condition="$type_name heq '汉堡'">selected</if>>汉堡</option>
+										<option value="牛排" <if condition="$type_name heq '牛排'">selected</if>>牛排</option>
+									</select>
+								</div>
+								<button type="submit" class="btn btn-default search-btn">搜索</button>
+							</form>
+						</div>
+					</div>
+			</div>
+
+			<notempty name="data">
+				<div class="builder-container">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="builder-table">
+								<div class="panel panel-default table-responsive">
+									<table class="table table-bordered table-striped table-hover">
+										<thead>
+										<tr>
+											<th>ID</th>
+											<th>商品名</th>
+											<th>状态</th>
+											<th>操作管理</th>
+										</tr>
+										</thead>
+										<tbody>
+										<foreach name="data" item="v">
+											<tr>
+												<td>{$v.id}</td>
+												<td>{$v.food_name}</td>
+												<td>
+													<if condition="$v['status'] eq 0">
+														<i class="fa fa-ban text-danger"></i>
+														<else/>
+														<i class="fa fa-check text-success"></i>
+													</if>
+												</td>
+												<td>
+													<a title="编辑" class="label label-primary" href="/admin.php?s=/shop/index/activity_food_edit/id/{$v.id}.html">编辑</a>
+
+													<if condition="$v['status'] eq 0">
+														<a title="启用" class="label label-success ajax-get" href="/admin.php?s=/shop/index/activity_food_resume/id/{$v.id}">启用</a>
+														<else/>
+														<a title="禁用" class="label label-warning ajax-get" href="/admin.php?s=/shop/index/activity_food_forbid/id/{$v.id}">禁用</a>
+													</if>
+												</td>
+											</tr>
+										</foreach>
+										</tbody>
+									</table>
+								</div>
+								<notempty name="pages">
+									<ul class="pagination">
+										{$pages}
+									</ul>
+								</notempty>
+							</div>
+						</div>
+					</div>
+				</div>
+				<else/>
+				<div class="tc nothing" style="">
+					<i><img src="__HTML__/images/icon_none-order.png" alt="" class="imgm"></i>
+					<span class="mt10 fs14 col9">暂无数据</span>
+				</div>
+			</notempty>
+		</div>
+	</div>
+	<script>
+
+	</script>
+</block>

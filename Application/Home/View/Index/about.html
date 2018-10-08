@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="renderer" content="webkit">
+    <title>{$meta_title}</title>
+    <!--css-->
+    <link rel="stylesheet" href="/html/static/style/css/main.css?t={$clear_web}">
+    <link rel="stylesheet" href="/html/static/style/css/about.css?t={$clear_web}">
+</head>
+<body>
+<div id="app" v-cloak>
+    <!-- banner轮播 开始-->
+    <section class="about_banner">
+        <video :src="about_message_data.video" :poster="about_message_data.video_cover" controls="controls">
+                您的浏览器不支持 video 标签。
+        </video>
+    </section>
+    <!-- banner轮播 结束 -->
+    <!-- 关于我们 开始-->
+        <section class="about_me">
+            <div class="about_me_title">
+                <img src="/html/static/images/about/about_title.png" alt="">
+            </div>
+            <div class="about_message">
+                <span class="icons_news"></span>
+                <p v-html="about_message_data.content_en">
+                </p>
+                <span class="icons_news"></span>
+                <p v-html="about_message_data.content"></p>
+            </div>
+        </section>
+    <!-- 关于我们 结束 -->
+    <footer-component current = "1"></footer-component>
+</div>
+</body>
+</html>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/html/require.js?t={$clear_web}"></script>
+<script src="/html/static/script/about.js?t={$clear_web}"></script>

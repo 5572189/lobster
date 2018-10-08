@@ -1,0 +1,90 @@
+@import "component/variable";
+[v-cloak]{
+    display: none;
+}
+#app {
+    background: url("../../images/index_bg.jpg" + $clear_web) center top no-repeat;
+    background-size: cover;
+    max-width:to_rem(750);
+    width: 100%;
+    margin: 0 auto;
+}
+.banner{
+    position: relative;
+    img{
+      width: 100%;
+    }
+    .swiper-pagination{
+      width: to_rem(100);
+      height: to_rem(45);
+      background: rgba(0,0,0,.7);
+      border-radius: to_rem(12);
+      position: absolute;
+      bottom: to_rem(12);
+      color: #fff;
+      font-size: to_rem(26);
+      line-height: to_rem(45);
+      left: 80%;
+    }
+  }
+  .about-us{
+    padding: 0 to_rem(40);
+    .title{
+      font-size: to_rem(60);
+      color: #e4a263;
+      padding: to_rem(30) to_rem(40);
+      padding-left: 0;
+    }
+    .address{
+      padding: 0 to_rem(50) to_rem(45);
+      padding-left: to_rem(35);
+      background: url(/html/static/images/icons_address.png) left to_rem(5) no-repeat;
+      background-size: to_rem(21) to_rem(28);
+      display: block;
+      font-size: to_rem(24);
+      color: #fff;
+    }
+    .ab-text{
+      font-size: to_rem(24);
+      color: #888888;
+      padding-bottom: to_rem(50);
+      line-height: to_rem(38);
+      text-align: justify;
+    }
+    .ab-detail{
+      width: 100%;
+      color: #e4a263;
+      font-size: to_rem(24);
+      .item{
+        padding: to_rem(20) 0 to_rem(20) to_rem(95);
+        border-bottom: #8e8e8e solid 1px;
+        a{color: #fff;}
+        &:nth-child(1){
+          border-top: #8e8e8e solid 1px;
+          background: url("../../images/online_time_iocn.png") to_rem(45) to_rem(18) no-repeat;
+          background-size: to_rem(36) to_rem(36);
+        }
+        &:nth-child(2){
+          background: url("../../images/online_address_iocn.png") to_rem(45) to_rem(25) no-repeat;
+          background-size: to_rem(36) to_rem(45);
+        }
+        &:nth-child(3){
+          background: url("../../images/online_tel_iocn.png") to_rem(45) to_rem(20) no-repeat;
+          background-size: to_rem(37) to_rem(36);
+        }
+      }
+      .time{
+        height: to_rem(65);
+        display: block;
+        padding-left: to_rem(90);
+        position: relative;
+        em{
+          position: absolute;
+          top:50%;
+          transform: translateY(-50%);
+          line-height: to_rem(30);
+          left: to_rem(90);;
+        }
+      }
+    }
+  }

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="renderer" content="webkit">
+    <title>PIZZAgram.</title>
+    <link rel="stylesheet" href="/webApp/static/style/css/weui/weui-index.css">
+    <link rel="stylesheet" href="/webApp/static/style/css/default/main.css">
+    <link rel="stylesheet" href="/webApp/static/style/css/page/personal/record.css">
+</head>
+<body>
+<div id="app">
+    <div class="content" v-cloak>
+        <div class="tab">
+            <span :class="{active: rechargeStatus}" @click="tabs('rechargeStatus')">充值记录<br>Recharge record</span>
+            <span :class="{active: expensesStatus}" @click="tabs('expensesStatus')">消费记录<br>Expenses record</span>
+        </div>
+        <div class="list">
+            <div class="item">
+                <div class="wrap">
+                    <span class="price">金额Amount</span>
+                    <span class="time">时间Time</span>
+                </div>
+            </div>
+            <div class="weui-tab__bd-item"  v-if="rechargeStatus">
+                <div v-if="rechargeStatus" v-for="(recharge, index) in rechargeOrders" :key="index" v-cloak>
+                    <div
+                            class="item"
+                            :class="{active: recharge.disabled}"
+                            @click="cornuleRoot(index, rechargeOrders)"
+                    >
+                        <div class="wrap">
+                            <span class="price red" v-text="'￥'+recharge.payment">--</span>
+                            <span class="time gray" v-text="recharge.create_time">--</span>
+                            <span class="cornule" :class="{active: recharge.disabled}"></span>
+                        </div>
+                    </div>
+                    <transition
+                            name="staggered-fade"
+                            v-bind:css="false"
+                            v-on:before-enter="beforeEnter"
+                            v-on:enter="enter"
+                            v-on:leave="leave">
+                    <div class="item detail-wrap" v-if="recharge.disabled">
+                        <div class="detail">
+                            <div class="common">
+                                <span class="title">订单号<br><em>order number：</em></span>
+                                <span class="text" v-text="recharge.ordernum">--</span>
+                            </div>
+                            <div class="common">
+                                <span class="title">门店<br><em>Store：</em></span>
+                                <span class="text" v-text="recharge.shop_name">--</span>
+                            </div>
+                            <div class="common">
+                                <span class="title">付款方式<br><em>payment method：</em></span>
+                                <span class="text" v-text="recharge.pay_type">--</span>
+                            </div>
+                            <div class="common">
+                                <span class="title">支付时间<br><em>Payment time：</em></span>
+                                <span class="text" v-text="recharge.create_time">--</span>
+                            </div>
+                        </div>
+                    </div>
+                    </transition>
+                </div>
+                <div class="weui-loadmore" v-if="rechargeOrdersPageLoad" v-cloak>
+                    <i class="weui-loading"></i>
+                    <span class="weui-loadmore__tips">正在加载</span>
+                </div>
+            </div>
+            <!--2-->
+            <div class="weui-tab__bd-item" v-if="expensesStatus">
+                <div v-if="expensesStatus" v-for="(restaurant, index) in restaurantOrders" :key="index" v-cloak>
+                    <div class="item" :class="{active: restaurant.disabled}" @click="cornuleRoot(index, restaurantOrders)">
+                        <div class="wrap">
+                            <span class="price red" v-text="'￥'+restaurant.payment">--</span>
+                            <span class="time gray" v-text="restaurant.create_time">--</span>
+                            <span class="cornule" :class="{active: restaurant.disabled}" ></span>
+                        </div>
+                    </div>
+                    <transition
+                            name="staggered-fade"
+                            v-bind:css="false"
+                            v-on:before-enter="beforeEnter"
+                            v-on:enter="enter"
+                            v-on:leave="leave">
+                            <div class="item detail-wrap" v-if="restaurant.disabled">
+                                <div class="detail">
+                                    <div class="common">
+                                        <span class="title">订单号<br><em>order number：</em></span>
+                                        <span class="text" v-text="restaurant.ordernum">--</span>
+                                    </div>
+                                    <div class="common">
+                                        <span class="title">门店<br><em>Store：</em></span>
+                                        <span class="text" v-text="restaurant.shop_name">--</span>
+                                    </div>
+                                    <div class="common">
+                                        <span class="title">付款方式<br><em>payment method：</em></span>
+                                        <span class="text" v-text="restaurant.pay_type">--</span>
+                                    </div>
+                                    <div class="common">
+                                        <span class="title">支付时间<br><em>Payment time：</em></span>
+                                        <span class="text" v-text="restaurant.create_time">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                    </transition>
+                </div>
+                <div class="weui-loadmore" v-if="restaurantOrdersPageLoad" v-cloak>
+                    <i class="weui-loading"></i>
+                    <span class="weui-loadmore__tips">正在加载</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer-component current="4"></footer-component>
+</div>
+<script>var _tab = {$pageData}</script>
+<script src="/webApp/require.js"></script>
+<script src="/webApp/static/script/personal/record.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="renderer" content="webkit">
+    <title>{$meta_title}</title>
+    <!--css-->
+    <link rel="stylesheet" href="/html/static/style/css/main.css?t={$clear_web}">
+    <link rel="stylesheet" href="/html/static/style/css/shop_detail.css?t={$clear_web}">
+</head>
+<body>
+<div id="app" v-cloak>
+   <div class="banner">
+        <div class="swiper-container" id="banner">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" v-for="item in shop_detail_data.pics" :key="item.id">
+                    <img :src="item" alt="">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <div class="about-us">
+        <h2 class="title">{{shop_detail_data.title}}</h2>
+        <span class="address">{{shop_detail_data.title_en}}</span>
+        <p class="ab-text">
+            {{shop_detail_data.content_en}}
+            <br>
+            {{shop_detail_data.content}}
+        </p>
+        <div class="ab-detail">
+            <div class="item">{{shop_detail_data.open_hours}}</div>
+            <div class="item">
+                {{shop_detail_data.address}}
+                <br>
+                {{shop_detail_data.address_en}}
+            </div>
+            <div class="item"><a :href="'tel:'+shop_detail_data.telephone">{{shop_detail_data.telephone}}</a></div>
+
+        </div>
+    </div>
+    <footer-component current="4"></footer-component>
+</div>
+</body>
+</html>
+<script src="/html/require.js?t={$clear_web}"></script>
+<script src="/html/static/script/shop_detail.js?t={$clear_web}"></script>

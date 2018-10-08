@@ -1,0 +1,154 @@
+<extend name="$_admin_public_layout"/>
+
+<block name="style">
+    <link rel="stylesheet" type="text/css" href="__CUI__/css/cui.extend.min.css">
+</block>
+
+<block name="script">
+    <script type="text/javascript" src="__CUI__/js/cui.extend.min.js"></script>
+    <script src="__PUBLIC__/libs/chart/1.x/Chart.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            // 用户增长曲线图
+            var chart_data = {
+                labels: {$data.total.list},
+                datasets: [{
+                    label: "会员增长曲线图",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: {$data.total.count}
+                }]
+            };
+            var chart_options = {
+                scaleLineColor : "rgba(0,0,0,.1)", //X/Y轴的颜色
+                scaleLineWidth : 1, //X/Y轴的宽度
+            };
+            var chart_element = document.getElementById("mychart").getContext("2d");
+            var myLine = new Chart(chart_element).Line(chart_data, chart_options);
+
+            // 日期
+            $('#start_date').datetimepicker({
+                format      : 'yyyy-mm-dd',
+                autoclose   : true,
+                minView     : 'month',
+                todayBtn    : 'linked',
+                language    : 'en',
+                initialDate : '{$data.search.start_date}',
+                fontAwesome : true,
+            });
+            $('#end_date').datetimepicker({
+                format      : 'yyyy-mm-dd',
+                autoclose   : true,
+                minView     : 'month',
+                todayBtn    : 'linked',
+                language    : 'en',
+                initialDate : '{$data.search.end_date}',
+                fontAwesome : true,
+            });
+        });
+    </script>
+    <!-- ECharts单文件引入 -->
+    <script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts图表
+        var myChart = echarts.init(document.getElementById('shop')); 
+        
+        option = {
+            title : {
+                text: '门店导入会员分布图(总数：{$data.shop.sum})',
+                subtext: '按门店',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            // legend: {
+            //     orient: 'vertical',
+            //     left: 'left',
+            //     data: {$shop}
+            // },
+            series : [
+                {
+                    name: '门店',
+                    type: 'pie',
+                    radius : '45%',
+                    center: ['50%', '60%'],
+                    data: {$data.shop.num},
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };       
+
+        // 为echarts对象加载数据 
+        myChart.setOption(option); 
+        
+    </script>
+</block>
+
+<block name="main">
+    <div class="chart">
+        <div class="panel-body">
+            <div class="col-xs-12 col-sm-6 col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-area-chart"></i> 会员增长统计（新会员总数：{$data.total.number}）
+                    </div>
+                    <div class="panel-body">
+                        <h5 class="text-center">
+                            <form action="{:U('')}" method="get">
+                                <input id="start_date" name="start_date" value="{$data.search.start_date}"> 至
+                                <input id="end_date" name="end_date" value="{$data.search.end_date}">
+                                <input id="submit" type="submit" class="btn btn-xs btn-default search-btn" value="查询">
+                            </form>
+                        </h5>
+                        <canvas id="mychart" style="width:100%;height:300px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table style="width: 100%;margin-bottom: 20px">
+        <tr align=center>
+            <td style="width:500px;height:500px">
+                <div id="shop" style="width:500px;height:500px"></div>
+            </td>
+            
+       	</tr>
+       	
+    </table>
+    
+    <table border=1 cellpadding=0 cellspacing=0 width="1200px"  style="font-family:'Microsoft YaHei';font-size:14px;height:30px;line-height:30px;">
+        <tr style="font-family:'Microsoft YaHei';font-size:14px;">
+            <th style="background:#b49a92;" align="center">店名</th>
+            <th style="background:#b49a92;" align="center">新会员数(已绑定手机)</th>
+            <th style="background:#b49a92;" align="center">新会员数(未绑定手机)</th>
+            <th style="background:#b49a92;" align="center">新会员数(总计)</th>
+       	</tr>
+       	<foreach name="data.shop.num_origin" item="vo">
+       	<tr style="font-family:'Microsoft YaHei';font-size:14px;line-height:25px;">
+            <td style="padding-left:5px;padding-right:5px;" align="left">{$vo.name_origin}</td>
+            <td style="padding-left:5px;padding-right:5px;" align="left">{$vo.value_mobile}</td>
+            <td style="padding-left:5px;padding-right:5px;" align="left">{$vo.value_unmobile}</td>
+            <td style="padding-left:5px;padding-right:5px;" align="left">{$vo.value}</td>
+        </tr>
+        </foreach>
+        <tr style="font-family:'Microsoft YaHei';font-size:14px;line-height:25px;">
+            <td style="padding-left:5px;padding-right:5px;" align="left">总计</td>
+            <td style="padding-left:5px;padding-right:5px;" align="left">{$data.total.mobile_number}</td>
+            <td style="padding-left:5px;padding-right:5px;" align="left">{$data.total.unmobile_number}</td>
+            <td style="padding-left:5px;padding-right:5px;" align="left">{$data.total.number}</td>
+        </tr>
+    </table>
+</block>

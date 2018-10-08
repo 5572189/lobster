@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="renderer" content="webkit">
+    <title>{$meta_title}</title>
+    <!--css-->
+    <link rel="stylesheet" href="/html/static/style/css/main.css?t={$clear_web}">
+    <link rel="stylesheet" href="/html/static/style/css/news.css?t={$clear_web}">
+</head>
+<body>
+<div id="app" v-cloak>
+    <!-- 新闻列表页 开始-->
+        <section class="news_list">
+            <ul>
+                <li v-for="item in news_list_data" :key="item.id">
+                    <a :href="'/index.php?s=/home/index/news_detail.html&id='+item.id">
+                        <p class="list_h"> <i></i> <span class="time">{{item.news_date}}</span>  <span class="hr"></span></p>
+                        <img :src="item.cover" alt="">
+                        <div>
+                            <p>{{item.title}}</p>
+                            <p>{{item.title_en}}</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </section>
+</div>
+</body>
+</html>
+<script src="/html/require.js?t={$clear_web}"></script>
+<script src="/html/static/script/news.js?t={$clear_web}"></script>

@@ -1,0 +1,187 @@
+<extend name="$_admin_public_layout" />
+<block name="style">
+	<style>
+		.form-inline .form-group{
+			margin-right: 12px;
+			margin-bottom: 15px;
+		}
+		.form-inline .btn{
+			margin-bottom: 15px;
+		}       
+	</style>
+</block>
+<block name="script">
+	<script type="text/javascript" src="/Public/libs/bootstrap-daterangepicker/moment.min.js"></script>
+	<script type="text/javascript" src="/Public/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+</block>
+<block name="style">
+	<link rel="stylesheet" type="text/css" href="/Public/libs/bootstrap-daterangepicker/daterangepicker.css">
+</block>
+<block name="main">
+<!-- 主体内容区域 -->
+<div class="tab-content ct-tab-content">
+	<div class="builder formbuilder-box panel-body">
+		<div class="form-group"></div>
+		<!-- 顶部工具栏按钮 -->
+		<div class="builder-toolbar">
+			<div class="row">
+				
+				<!-- 搜索框 -->
+				<div class="col-xs-12 col-sm-12 clearfix">
+					<form class="form form-inline" method="get" action="{:U('index')}">
+						<!--<div class="form-group item_dates ">
+							<label class="control-label">时间区间</label>
+							<div class="input-group search-form">
+								<div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+								<input readonly="readonly" type="text" id="_date_1" name="dates" class="form-control input dateranger" value="{$get.dates}" placeholder="首次注册时间">
+							</div>
+							<script>
+								$(function(){
+									// 初始化日期范围插件
+									$('#_date_1').daterangepicker({
+										"showDropdowns": true,
+										"autoApply": false,
+										// "dateLimit": {
+										//     "days": 365 * 100
+										// },
+										"linkedCalendars": false,
+										"ranges": {
+											"一周内": [
+												moment().subtract(6, 'days'),
+												moment()
+											],
+											"一月内": [
+											moment().subtract(29, 'days'),
+											moment()
+											],
+											"本月内": [
+												moment().startOf('month'),
+												moment().endOf('month')
+											],
+											"上个月": [
+												moment().subtract(1, 'month').startOf('month'),
+												moment().subtract(1, 'month').endOf('month')
+											]
+										},
+										autoUpdateInput: false,
+										locale : {
+											format: 'YYYY-MM-DD',
+											separator: ' - ',
+											applyLabel: '确定',
+											cancelLabel: '取消',
+											fromLabel: '从',
+											toLabel: '到',
+											customRangeLabel: '日期范围',
+											daysOfWeek: ['日', '一', '二', '三', '四', '五','六'],
+											monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+											firstDay: 1
+										},
+										"startDate": "<?php echo date( 'Y-m-d H:i:s' , strtotime('-3 month') )?>",
+										"endDate": "<?php echo date('Y-m-d H:i:s' ,time () )?>",
+										"minDate": "YYYY-MM-DD",
+										"maxDate": "YYYY-MM-DD"
+									}, function(start, end, label) {
+										console.log("New date range selected: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + " (predefined range: " + label + ")");
+									});
+			
+								$('#_date_1').on('apply.daterangepicker', function(ev, picker) {
+									$(this).val(picker.startDate.format('YYYY-MM-DD') + ' - ' + picker.endDate.format('YYYY-MM-DD'));
+								});
+					
+								$('#_date_1').on('cancel.daterangepicker', function(ev, picker) {
+									$(this).val('');
+								});
+							})
+						</script>
+						</div>-->
+						<div class="form-group item_title ">
+							<label class="control-label"> </label>
+							<input type="text" class="form-control" placeholder="用户手机号" name="mobile" value="{$get.mobile}">
+						</div>
+						<div class="form-group item_title ">
+							<label class="control-label"> </label>
+							<input type="text" class="form-control" placeholder="微信昵称" name="nickname" value="{$get.nickname}">
+						</div>
+						<div class="form-group item_title ">
+							<label class="control-label"> </label>
+							<input type="text" class="form-control" placeholder="姓名" name="cnname" value="{$get.cnname}">
+						</div>
+						<button type="submit" class="btn btn-default search-btn">搜索</button>
+					</form>
+					&nbsp;&nbsp;
+					<div class="form-group">
+						<a class="btn btn-primary export" id="export" title="导出数据" href="javascript:;">导出数据</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<div class="builder-container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="builder-table">
+					<div class="panel panel-default table-responsive">
+						<table class="table table-bordered table-striped table-hover">
+							<thead>
+								<tr>
+									<th><input class="check-all" type="checkbox"></th>
+									<th>ID</th>
+									<th>微信OPENID</th>
+									<th>微信昵称</th>
+									<th>微信头像</th>
+									<th>手机号码</th>
+									<th>首次注册时间</th>
+									<th>汉堡总数量</th>
+									<th>汉堡已兑换</th>
+									<th>汉堡未兑换</th>
+									<th>牛排总数量</th>
+									<th>牛排已兑换</th>
+									<th>牛排未兑换</th>
+								</tr>
+							</thead>
+						<tbody>
+							<foreach name="list" item="v">
+								<tr>
+									<td><input class="ids" type="checkbox" value="{$v.id}" name="ids[]"></td>
+									<td>{$v.id}</td>
+									<td>{$v.openid}</td>
+									<td>{$v.nickname}</td>
+									<td><img src="{$v.headimgurl}" width="50"></td>
+									<td>{$v.mobile}</td>
+									<td>{$v.create_time|time_format}</td>
+
+									<td>{$data[$v['ns_uid']]['totalHamburg']}</td>
+									<td>{$data[$v['ns_uid']]['exchangeHamburg']}</td>
+									<td>{$data[$v['ns_uid']]['exchangeHamburgNot']}</td>
+									<td>{$data[$v['ns_uid']]['totalSteak']}</td>
+									<td>{$data[$v['ns_uid']]['exchangeSteak']}</td>
+									<td>{$data[$v['ns_uid']]['exchangeSteakNot']}</td>
+								</tr>
+							</foreach>
+						</tbody>
+					</table>
+				</div>
+				<notempty name="pages">
+					<ul class="pagination">
+						{$pages}
+					</ul>
+				</notempty>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+<script>
+	$("#export").click( function() {
+		var dates = $.trim( $('input[name="dates"]').val() ) ;
+		var mobile = $.trim( $('input[name="mobile"]').val() ) ;
+		var nickname = $.trim( $('input[name="nickname"]').val() ) ;
+		var cnname = $.trim( $('input[name="cnname"]').val() ) ;
+		var url = "{:U('export')}";
+		var param = url + '&dates=' + dates + '&mobile=' + mobile ;
+			param += '&nickname=' + nickname + '&cnname=' + cnname ;
+		window.open(param);
+	})
+</script>
+</block>

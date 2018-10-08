@@ -1,0 +1,187 @@
+<extend name="$_admin_public_layout" />
+<block name="style">
+    <style>
+        .form-inline .form-group{
+            margin-right: 12px;
+            margin-bottom: 15px;
+        }
+        .form-inline .btn{
+            margin-bottom: 15px;
+        }  
+        table tr td{vertical-align:middle !important; }          
+    </style>
+</block>
+<block name="script">
+    <script type="text/javascript">
+       
+    </script>
+</block>
+<block name="js">
+</block>
+<block name="main">
+<!-- 主体内容区域 -->
+<div class="tab-content ct-tab-content">
+    <div class="builder formbuilder-box panel-body">     
+
+       
+
+        <!-- 顶部工具栏按钮 -->
+        <div class="builder-toolbar">
+
+             <div class="form-group"></div>
+            <div class="row">
+                <!-- 工具栏按钮 -->
+                <div class="col-xs-12 col-sm-2 button-list clearfix">
+                    <div class="form-group">
+                        <a class="btn btn-primary" href="{:U('export_record3',I('get.'),false)}">导出记录</a>
+                    </div>
+                </div>
+                <!-- 搜索框 -->
+                <div class="col-xs-12 col-sm-10 clearfix">
+                    <form class="form form-inline" method="get" action="{:U('record3')}">
+                        <div class="form-group item_nickname ">
+                            <label class="control-label">微信昵称</label>
+                            <input type="text" class="form-control" placeholder="" name="nickname" value="{$_GET['nickname']}">
+                        </div>
+                        <div class="form-group item_username ">
+                            <label class="control-label">姓名</label>
+                            <input type="text" class="form-control" placeholder="" name="username" value="{$_GET['username']}">
+                        </div>
+                        <div class="form-group item_mobile ">
+                            <label class="control-label">用户手机号</label>
+                            <input type="text" class="form-control" placeholder="" name="mobile" value="{$_GET['mobile']}">
+                        </div>
+                        <div class="form-group item_shop">
+                            <label class="left control-label"></label>
+                            <select name="shop_name" class="form-control cui-select select">                               
+                                <option value="">请选择门店</option>
+                                <foreach name="shop_list" item="v">
+                                    <option value="{$v.title}" <if condition="$_GET['shop_name'] eq $v['title']">selected</if>>{$v.title}</option>
+                                </foreach>                               
+                            </select>
+                        </div>
+                        <!--<div class="form-group item_type">
+                            <label class="left control-label"></label>
+                            <select name="type" class="form-control cui-select select">                              
+                                <option value="">请选择操作类型</option>
+                                <option value="urder_line_card" <if condition="$_GET['type'] eq 'urder_line_card'">selected</if>>扫码储值</option>
+                                <option value="under_line" <if condition="$_GET['type'] eq 'urder_line'">selected</if>>餐厅消费</option>
+                                <option value="refund" <if condition="$_GET['type'] eq 'refund'">selected</if>>线下退款</option>
+                            </select>
+                        </div>-->
+                        <br/>
+                        <div class="form-group item_mail_username ">
+                            <label class="control-label">发起人姓名</label>
+                            <input type="text" class="form-control" placeholder="" name="sponsor_name" value="{$_GET['sponsor_name']}">
+                        </div>
+                        <div class="form-group item_mail_mobile ">
+                            <label class="control-label">发起人手机号</label>
+                            <input type="text" class="form-control" placeholder="" name="sponsor_phone" value="{$_GET['sponsor_phone']}">
+                        </div>
+                        <div class="form-group item_mail_email ">
+                            <label class="control-label">发起人邮箱</label>
+                            <input type="text" class="form-control" placeholder="" name="sponsor_email" value="{$_GET['sponsor_email']}">
+                        </div>
+                        <div class="form-group item_mail_email ">
+                            <label class="control-label">订单号</label>
+                            <input type="text" class="form-control" placeholder="" name="related_order" value="{$_GET['related_order']}">
+                        </div>
+                        <button type="submit" class="btn btn-default search-btn">搜索</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    <div class="builder-container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="builder-table">
+                    <div class="panel panel-default table-responsive">
+
+                        <table class="table table-bordered table-striped table-hover">
+
+                            <thead>
+                                <tr>
+                                    <!-- <th><input class="check-all" type="checkbox"></th> -->
+                                    <!-- <th>id</th> -->
+                                    <th>微信昵称</th>
+                                    <th>手机号</th>
+
+                                    <th>订单号</th>
+
+                                    <th>会员级别</th>
+                                    <th>消费类型</th>
+                                   <!-- <th>总金额</th>
+                                    <th>折扣</th>-->
+                                    <th>实际金额</th>
+                                    <th>余额</th>
+                                    <th>操作时间</th>
+                                    <th>门店</th>
+                                    <!--<th>支付方式</th>-->
+                                    <!--<th>Ns销售员</th>-->
+                                    <th>平台操作人</th>
+                                    <th>发起人姓名</th>
+                                    <th>发起人电话</th>
+                                    <th>发起人邮箱</th>
+                                    <!--<th width="10%">原备注</th>-->
+                                    <th width="10%">新备注</th>
+                                   <!--  <th>操作管理</th> -->
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <foreach name="list" item="v">
+                                <tr>
+                                    <td>{$v.nickname}</td>
+                                    <td>{$v.mobile}</td>
+                                    <td>
+                                        <if condition="$v.related_order">
+                                            <a href="/admin.php?s=/goods/goods/goodsorder/keyword/{$v.related_order}.html">{$v.related_order}</a>
+                                        </if>
+
+                                    </td>
+                                    <td>{$v.card_level_name}</td>
+                                    <td>
+                                        <if condition="$v['type'] eq 'urder_line_card'">
+                                            扫码充值
+                                            <elseif condition="$v['type'] eq 'refund'"/>
+                                            线下退款
+                                            <else/>
+                                            餐厅消费
+                                        </if>
+                                    </td>
+                                   <!-- <td>{$v.total}</td>
+                                    <td>{$v.username}</td>-->
+                                    <td>{$v.payment}</td>
+                                    <td>{$v.surplus_score}</td>
+                                    <td>{$v.create_time}</td>
+                                    <td>{$v.shop_name}</td>
+                                    <!--<td>N币支付</td>-->
+                                   <!-- <td>{$v.shop_user_name}</td>-->
+                                    <td>{$v.admin_name}</td>
+                                    <td>{$v.sponsor_name}</td>
+                                    <td>{$v.sponsor_phone}</td>
+                                    <td>{$v.sponsor_email}</td>
+                                    <!--<td>{$v.message} </td>-->
+                                    <td>{$v.admin_message} </td>
+                                </tr>
+                            </foreach>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                     <notempty name="pages">
+                        <ul class="pagination">
+                            {$pages}
+                        </ul>
+                    </notempty>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</block>

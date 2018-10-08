@@ -1,0 +1,69 @@
+@import "component/variable";
+[v-cloak]{
+    display: none;
+}
+#app {
+    background: url("../../images/index_bg.jpg" + $clear_web) center top no-repeat;
+    background-size: cover;
+    max-width:to_rem(750);
+    width: 100%;
+    margin: 0 auto;
+}
+.news_list{
+    width: 100%;
+    ul{
+        list-style: none;
+        width: to_rem(655);
+        margin: 0 auto;
+        padding-top: to_rem(50);
+        li{
+            position: relative;
+            margin-bottom: to_rem(40);
+            a{
+                display: block;
+                img{
+                    display: block;
+                    width: 100%;
+                }
+                .list_h{
+                    line-height: to_rem(60);
+                    i{
+                        position: absolute;
+                        left: to_rem(10);
+                        top: to_rem(20);
+                        display: inline-block;
+                        width: to_rem(75);
+                        height: to_rem(75);
+                        background: url(/html/static/images/icons_new.png) no-repeat;
+                        background-size: contain;
+                    }
+                    .time{
+                        margin-left: to_rem(90);
+                        font-size: to_rem(26);
+                        color: #fff;
+                    }
+                    .hr{
+                        display: inline-block;
+                        width: to_rem(400);
+                        height: 2px;
+                        background: #fff;
+                        float: right;
+                        margin-top: to_rem(30);
+                    }
+                }
+                div{
+                    width: 100%;
+                    height: to_rem(90);
+                    background: rgba(0,0,0,.5);
+                    margin-top: 5px;
+                    p{
+                        font-size: to_rem(24);
+                        color: #fff;
+                        line-height: to_rem(45);
+                        text-indent: to_rem(15);
+                    }
+                }
+            }
+        }
+    }
+}

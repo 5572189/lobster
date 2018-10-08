@@ -1,0 +1,76 @@
+@import "default/reset";
+@import "component/rem-define";
+@import "default/base";
+@import "swiper/swiper4.0.5";
+@import "footer";
+@import "./weui/weui-index";
+
+//app背景
+#app{
+  background: url("../../images/common_item_bg_03.png") left center repeat;
+  background-size: to_rem(750) to_rem(232);
+}
+//英文字体
+@font-face {font-family: "enBlod";
+  src: url('../../fonts/en/VisbyCFBold.svg?t=1491385909696'); /* IE9*/
+  src: url('../../fonts/en/VisbyCFBold.eot?t=1491385909696#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../../fonts/en/VisbyCFBold.woff?t=1491385909696') format('woff'), /* chrome, firefox */
+  url('../../fonts/en/VisbyCFBold.ttf?t=1491385909696') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../../fonts/en/VisbyCFBold.svg?t=1491385909696#ico') format('svg'); /* iOS 4.1- */
+}
+@font-face {font-family: "enLight";
+  src: url('../../fonts/en/VisbyCFLight.svg?t=1491385909696'); /* IE9*/
+  src: url('../../fonts/en/VisbyCFLight.eot?t=1491385909696#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../../fonts/en/VisbyCFLight.woff?t=1491385909696') format('woff'), /* chrome, firefox */
+  url('../../fonts/en/VisbyCFLight.ttf?t=1491385909696') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../../fonts/en/VisbyCFLight.svg?t=1491385909696#ico') format('svg'); /* iOS 4.1- */
+}
+@font-face {font-family: "enMedium";
+  src: url('../../fonts/en/VisbyCFMedium.svg?t=1491385909696'); /* IE9*/
+  src: url('../../fonts/en/VisbyCFMedium.eot?t=1491385909696#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../../fonts/en/VisbyCFMedium.woff?t=1491385909696') format('woff'), /* chrome, firefox */
+  url('../../fonts/en/VisbyCFMedium.ttf?t=1491385909696') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../../fonts/en/VisbyCFMedium.svg?t=1491385909696#ico') format('svg'); /* iOS 4.1- */
+}
+.enBlod {
+  font-family:"enBlod" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;}
+.enLight {
+  font-family:"enLight" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;}
+.enMedium {
+  font-family:"enMedium" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;}
+
+//播放器按钮
+.tart-video{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: url("../../images/start_video_icon.png") center center no-repeat;
+  z-index: 123;
+  background-size: to_rem(108) to_rem(108);
+  display: inline-block;
+  width: to_rem(108);
+  height: to_rem(108);
+}
+
+.alert-warp{
+  position: fixed;
+  top:0;
+  left: 0;
+  background: rgba(0,0,0,.8);
+  width: 100%;
+  height: 100%;
+  z-index: 111;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="renderer" content="webkit">
+    <title>{$meta_title}</title>
+    <!--css-->
+    <link rel="stylesheet" href="/html/static/style/css/main.css">
+    <link rel="stylesheet" href="/html/static/style/css/login.css?t={$clear_web}">
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="login">
+        <div class="login_center">
+            <div class="ph_co">
+                <input class="phone" type="number" placeholder="手机号码 | Mobile phone " v-model="phone">
+                <input class="code" type="text" placeholder="验证码 | Enter verification code" v-model="code">
+            </div>
+        </div>
+        <div class="code_btn" v-html="loadText" @click="getSms"></div>
+        <div class="submit_btn" @click="submit">
+            一键登录 | SIGN IN
+        </div>
+        <div class="login_hint">
+            未注册的手机号将自动注册为会员 <br> The unregistered mobile phone number will <br>
+            automatically register as a member.
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="/html/require.js?t={$clear_web}"></script>
+<script src="/html/static/script/login.js?t={$clear_web}"></script>

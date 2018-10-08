@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="renderer" content="webkit">
+    <title>TBC</title>
+    <!--css-->
+    <link rel="stylesheet" href="../static/style/css/main.css">
+    <link rel="stylesheet" href="../static/style/css/menu.css">
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="tab">
+        <div :class="{active: currentPage == 1}" @click="tab(1)">菜单 MENU</div>
+        <div :class="{active: currentPage == 2}" @click="tab(2)">视频 VIDEO</div>
+        <div :class="{active: currentPage == 3}" @click="tab(3)">环境 ATLTS</div>
+    </div>
+    <div class="menu" v-if="currentPage == 1">
+        <ul class="clearfix">
+            <li>
+                <img src="../static/images/555_07.png" alt="">
+                <div class="name omg">The Burger 经典汉堡</div>
+            </li>
+        </ul>
+    </div>
+    <div class="video" v-if="currentPage == 2">
+        <ul>
+            <li>
+                <video>
+                    <source>
+                </video>
+                <span class="tart-video"></span>
+                <div class="name clearfix">
+                    <span class="h omg">全集求县</span>
+                    <span class="time-long omg">#餐厅 ／ 02′22″</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="atlts" v-if="currentPage == 3">
+        <ul>
+            <li>
+                <img src="../static/images/chef_banner.jpg" alt="">
+                <div class="name clearfix">
+                    <span class="city omg">上海</span>
+                    <span class="address">北京市朝阳区东大桥路9号楼B2层（B217）侨福芳草地LG2-13单元</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <footer-component current = "2"></footer-component>
+</div>
+</body>
+</html>
+
+<script src="../require.js"></script>
+<script src="../static/script/menu.js"></script>

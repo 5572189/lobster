@@ -1,0 +1,129 @@
+<extend name="$_admin_public_layout" />
+<block name="style">
+	<link rel="stylesheet" type="text/css" href="__CUI__/css/cui.extend.min.css">
+	<include file="./Application/Common/Builder/style.html" />
+</block>
+<block name="script">
+	<script type="text/javascript">     
+	</script>
+</block>
+<block name="js">
+</block>
+<block name="main">
+<!-- 主体内容区域 -->
+<div class="tab-content ct-tab-content">
+	<div class="builder formbuilder-box panel-body">
+		<!-- 顶部工具栏按钮 -->      
+		<div class="builder-container">
+			<div class="row">
+				<div class="col-xs-12">
+					<form action="" method="post" class="form-horizontal form form-builder">
+						<input type="hidden" name="id" value="{$data.id}">
+							<div class="form-group item_index_type ">
+								<label class="left control-label">平台：</label>
+								<div class="right">
+									<foreach name="platform" item="v" key="k">
+										<div class="radio-inline cui-control cui-radio">
+											<label for="status_{$k}">
+												<input id="status_{$k}" class="radio" name="platform" value="{$k}" type="radio" <if condition="$data.platform eq $k" >checked</if>>
+												<span class="cui-control-indicator"></span>
+												<span>{$v}</span>
+											</label>
+										</div>
+									</foreach>
+								</div>
+							</div>
+							<div class="form-group item_pic ">
+								<label class="left control-label">图片：</label>
+								<div class="right row">
+									<div id="_upload_box_11" class="wu-example">
+										<!--用来存放文件信息-->
+										<div id="_upload_list_11" class="uploader-list col-xs-12 img-box">
+											<notempty name="$data.pic">
+												<div id="_upload_preview_11" class="col-md-4 file-item thumbnail">
+													<i class="fa fa-times-circle remove-picture"></i>
+													<img src="{$data.pic|get_cover}" data-id="{$$data.pic}">
+												</div>
+												<else />
+												<div id="_upload_preview_11" class="col-md-4 file-item thumbnail hidden">
+													<i class="fa fa-times-circle remove-picture"></i>
+													<img>
+												</div>
+											</notempty>
+										</div>
+										<div class="btns col-xs-12">
+											<input type="hidden" id="_upload_input_11" name="pic" value="{$data.pic}">
+											<div id="_upload_11">上传图片</div>
+											<button id="ctlBtn" class="btn btn-default hidden">开始上传</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group item_title_en ">
+								<label class="left control-label">跳转URL：</label>
+								<div class="right">
+									<input type="text" class="form-control input text " name="url" value="{$data.url}">
+								</div>
+							</div>
+							<div class="form-group item_index_type ">
+								<label class="left control-label">启用状态：</label>
+								<div class="right">
+									<div class="radio-inline cui-control cui-radio">
+										<label for="status1">
+											<input id="status1" class="radio" name="status" value="1" type="radio" <if condition="$data.status eq 1 || !$data" >checked</if>>
+											<span class="cui-control-indicator"></span>
+											<span>启用</span>
+										</label>
+									</div>
+									<div class="radio-inline cui-control cui-radio">
+										<label for="status2">
+											<input id="status2" class="radio" name="status" value="2" type="radio" <if condition="$data.status eq 2" >checked</if>>
+											<span class="cui-control-indicator"></span>
+											<span>禁用</span>
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group item_title_en ">
+								<label class="left control-label">秒数设置(弹框弹出时间)：</label>
+								<div class="right">
+									<input type="text" class="form-control input text " name="times" value="{$data.times}">
+								</div>
+							</div>
+							
+							<div class="form-group item_title_en ">
+								<label class="left control-label">播放页面：</label>
+								<div class="right">
+									<select name="position" class="form-control cui-select select">
+										<foreach name="position" item="u" key = "k">
+											<option value="{$k}" <if condition="$get['pf'] eq $k">selected</if>>{$u}</option>
+										</foreach>
+									</select>
+								</div>
+							</div>
+							
+							<div class="form-group"></div>                                           
+							<div class="form-group">
+								<button class="btn btn-primary btn-block submit ajax-post visible-xs visible-sm" type="submit" target-form="form-builder">确定</button>
+								<button class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" type="submit" target-form="form-builder">确定</button>
+								<button class="btn btn-default return visible-md-inline visible-lg-inline" onclick="javascript:history.back(-1);return false;">返回</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</block>
+
+<block name="script">
+	<script type="text/javascript" src="__CUI__/js/cui.extend.min.js"></script>
+	<script type="text/javascript" src="/html/js/uploader.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			var options = {'pick': '#_upload_11', 'preview': '#_upload_preview_11', 'inputs': '#_upload_input_11'};
+			$.myUploader(options);
+		})
+	</script>
+</block>

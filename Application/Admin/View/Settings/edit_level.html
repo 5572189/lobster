@@ -1,0 +1,82 @@
+<extend name="$_admin_public_layout" />
+<block name="style">
+    <link rel="stylesheet" type="text/css" href="__CUI__/css/cui.extend.min.css">
+    <include file="./Application/Common/Builder/style.html" />
+</block>
+<block name="script">
+    <script type="text/javascript">
+
+    </script>
+</block>
+<block name="js">
+</block>
+<block name="main">
+    <!-- 主体内容区域 -->
+    <div class="tab-content ct-tab-content">
+        <div class="builder formbuilder-box panel-body">
+            <!-- Tab导航 -->
+            <div class="form-group"></div>
+            <!-- 顶部工具栏按钮 -->
+
+            <div class="builder-container">
+                <div class="row">
+                    <div class="col-xs-12">
+
+                        <form action="{:U('edit_level',['id'=>$info['id'],'lang'=>$info['lang']])}" method="post" class="form-horizontal form form-builder">
+                            <input type="hidden" name="lang" value="{$info['lang']}" />
+                            <div class="col-xs-12">
+                                <div class="form-group item_status ">
+                                    <label class="left control-label">用户类型：</label>
+                                    <div class="right">
+                                        <div class="radio-inline cui-control cui-radio">
+                                            <label for="status1">
+                                                <input type="radio" id="status1" class="radio" name="user_type" value="0" <if condition="$info.user_type eq 0">checked</if>>
+                                                <span class="cui-control-indicator"></span>
+                                                <span>普通用户</span>
+                                            </label>
+                                        </div>
+                                        <div class="radio-inline cui-control cui-radio">
+                                            <label for="status0">
+                                                <input type="radio" id="status0" class="radio" name="user_type" value="2" <if condition="$info.user_type eq 2">checked</if>>
+                                                <span class="cui-control-indicator"></span>
+                                                <span>企业用户</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group item_name ">
+                                    <label class="left control-label">等级：</label>
+                                    <div class="right"><input type="text" class="form-control input text" name="card_level" value="{$info.card_level}"></div>
+                                </div>
+                                <div class="form-group item_name ">
+                                    <label class="left control-label">等级中文名称：</label>
+                                    <div class="right"><input type="text" class="form-control input text" name="card_level_name" value="{$info.card_level_name}"></div>
+                                </div>
+                                <div class="form-group item_name ">
+                                    <label class="left control-label">等级英文名称：</label>
+                                    <div class="right"><input type="text" class="form-control input text" name="card_level_name_en" value="{$info.card_level_name_en}"></div>
+                                </div>
+                                <div class="form-group item_name ">
+                                    <label class="left control-label">等级所需金币：</label>
+                                    <div class="right"><input type="text" class="form-control input text" name="need_coins" value="{$info.need_coins}"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-block submit ajax-post visible-xs visible-sm" type="submit" target-form="form-builder">确定</button>
+                                    <button class="btn btn-primary submit ajax-post visible-md-inline visible-lg-inline" type="submit" target-form="form-builder">确定</button>
+                                    <button class="btn btn-default return visible-md-inline visible-lg-inline" onclick="javascript:history.back(-1);return false;">返回</button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript" src="__CUI__/js/cui.extend.min.js"></script>
+    <include file="./Application/Common/Builder/javascript.html" />
+</block>

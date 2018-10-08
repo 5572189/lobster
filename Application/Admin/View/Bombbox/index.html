@@ -1,0 +1,126 @@
+<extend name="$_admin_public_layout" />
+<block name="style">
+	<style>
+		.form-inline .form-group{
+			margin-right: 12px;
+			margin-bottom: 15px;
+		}
+		.form-inline .btn{
+			margin-bottom: 15px;
+		}       
+	</style>
+</block>
+<block name="script">
+	<script type="text/javascript" src="/Public/libs/bootstrap-daterangepicker/moment.min.js"></script>
+	<script type="text/javascript" src="/Public/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script type="text/javascript" src="__CUI__/js/cui.extend.min.js"></script>
+</block>
+<block name="style">
+	<link rel="stylesheet" type="text/css" href="__CUI__/css/cui.extend.min.css">
+	<link rel="stylesheet" type="text/css" href="/Public/libs/bootstrap-daterangepicker/daterangepicker.css">
+</block>
+<block name="main">
+<!-- 主体内容区域 -->
+<div class="tab-content ct-tab-content">
+	<div class="builder formbuilder-box panel-body">
+		<div class="form-group"></div>
+		<!-- 顶部工具栏按钮 -->
+		<div class="builder-toolbar">
+			<div class="row">
+				
+				<!-- 搜索框 -->
+				<div class="col-xs-12 col-sm-12 clearfix">
+					<form class="form form-inline" method="get" action="{:U('index')}">
+						<div class="form-group item_index_type ">
+							<label class="left control-label">平台:</label>
+							<select name="pf" class="form-control cui-select select">
+								<option value="0">全部</option>
+								<foreach name="platform" item="u" key = "k">
+									<option value="{$k}" <if condition="$get['pf'] eq $k">selected</if>>{$u}</option>
+								</foreach>
+							</select>
+						</div>
+						<button type="submit" class="btn btn-default search-btn">搜索</button>
+					</form>
+					&nbsp;&nbsp;
+					<div class="form-group">
+						<a target-form="ids" class="btn btn-primary export" title="新增弹框" href="{:U('add')}">新增弹框</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<div class="builder-container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="builder-table">
+					<div class="panel panel-default table-responsive">
+						<table class="table table-bordered table-striped table-hover">
+							<thead>
+								<tr>
+									<th><input class="check-all" type="checkbox"></th>
+									<th>ID</th>
+									<th>平台</th>
+									<th>图片</th>
+									<th>URL</th>
+									<th>状态</th>
+									<th>弹框弹出时间(秒)</th>
+									<th>播放页面</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+						<tbody>
+							<foreach name="list" item="v">
+								<tr>
+									<td><input class="ids" type="checkbox" value="{$v.id}" name="ids[]"></td>
+									<td>{$v.id}</td>
+									<td><php>echo $platform[$v['platform']]</php></td>
+									<td>
+										<img class="picture" src="{$v.pic|get_cover}" style="max-width:200px;max-height:40px" >
+									</td>
+									<td>
+									<a target="_blank" href="<php>echo $v['url']</php>">
+										<php>echo $v['url']</php>
+									</a>
+									</td>
+									<td>
+										<switch name="v.status">
+											<case value="1">
+												<i class="fa fa-check text-success">启用</i>
+											</case>
+											<case value="2">
+												<i class="fa fa-ban text-danger">禁用</i>
+											</case>
+										</switch>
+									</td>
+									<td>{$v.times}</td>
+									<td><php>echo $position[$v['position']]</php></td>
+									<td>
+										<a href="{:U('add',['id'=>$v['id'],'lang'=>$lang])}" title="编辑" class="label label-primary">编辑</a> 
+										<switch name="v.status">
+											<case value="1">                                               
+												<a title="禁用" class="label label-warning ajax-get confirm" href="{:U('update',['id'=>$v['id'],'status'=>'2','lang'=>$lang])}">禁用</a>
+											</case>
+											<case value="2">                                               
+												<a title="启用" class="label label-success ajax-get confirm" href="{:U('update',['id'=>$v['id'],'status'=>'1','lang'=>$lang])}">启用</a>
+											</case>
+										</switch>
+										<a title="删除" class="label label-danger ajax-get confirm" href="{:U('del',['id'=>$v['id'],'deleted'=>'2','lang'=>$lang])}">删除</a>
+									</td> 
+								</tr>
+							</foreach>
+						</tbody>
+					</table>
+				</div>
+				<notempty name="pages">
+					<ul class="pagination">
+						{$pages}
+					</ul>
+				</notempty>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+</block>

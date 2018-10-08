@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="renderer" content="webkit">
+    <title>{$meta_title}</title>
+    <!--css-->
+    <link rel="stylesheet" href="/html/static/style/css/main.css?t={$clear_web}">
+    <link rel="stylesheet" href="/html/static/style/css/news_detail.css?t={$clear_web}">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <!-- 新闻banner 开始-->
+        <section class="news_banner">
+            <img :src="news_detail_data.cover" alt="">
+            <i>
+                <img src="/html/static/images/icons_new.png" alt="">
+            </i>
+        </section>
+        <!-- 新闻banner 结束 -->
+        <!-- 新闻信息 开始-->
+        <section class="news_message">
+            <div class="news_message_title">
+                <p>{{news_detail_data.title}}</p>
+                <p>{{news_detail_data.title_en}}</p>
+            </div>
+            <div class="news_message_time">
+                <p>
+                    <i><img src="/html/static/images/icons_news.png" alt=""></i>
+                    <span>日期Date：{{news_detail_data.news_date}}</span>
+                </p>
+            </div>
+            <div class="news_message_describe">
+
+                <p>
+                    {{news_detail_data.content_en}}
+                    <br> <span></span>
+                    {{news_detail_data.content}}
+                </p>
+            </div>
+        </section>
+        <!-- 新闻信息 结束 -->
+        <!-- 上一篇，下一篇 按钮 开始-->
+        <section class="news_btn">
+            <div class="news_btn_div">
+                <div @click="news_detail_Last(-1)">
+                    <a href="javascript:;">上一篇 | Last</a>
+                </div>
+                <div @click="news_detail_Next(1)">
+                    <a href="javascript:;">下一篇 | Next</a>
+                </div>
+            </div>
+        </section>
+        <!-- 上一篇，下一篇 按钮 结束 -->
+    </div>
+</body>
+
+</html>
+<script src="/html/require.js?t={$clear_web}"></script>
+<script src="/html/static/script/news_detail.js?t={$clear_web}"></script>
+<script>
+     var m = document.referrer;
+        window.addEventListener("popstate", function (e) {
+            window.history.back(m)
+        }, false);
+</script>

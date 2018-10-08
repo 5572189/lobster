@@ -1,0 +1,44 @@
+1. 首页广告
+/Home/slider/ajax_getBanner
+参数:type (0：首页) limit(最多显示数量，默认5个)
+
+2. 关于我们
+/Home/category/ajax_getDetail
+参数: id = 1
+
+3. 门店列表/详情
+/Home/restaurant/ajax_getRestaurantList
+参数：id = 门店id 
+不填id代表列表接口
+
+4. 菜单列表
+/Home/category/ajax_getMenuList
+
+5. 视频列表
+/Home/category/ajax_getVideoList
+
+6. 首页（活动/门店/新闻）
+/Home/index/index
+
+7. 新闻列表
+/Home/category/ajax_getNewsList
+
+8. 新闻详情翻页
+/Home/category/ajax_getNextNews
+参数：id = 当前新闻id  dir (1:下一篇  -1：上一篇)
+dir为0时代表当前新闻详情
+
+返回空时代表没有更多
+
+9. 发送手机验证码
+/Home/member/ajax_send_verify_code
+参数：mobile 手机号
+
+10. 登录/注册
+/Home/member/ajax_login
+参数：mobile 手机号 
+ verify_code 短信验证码
+ user_type 会员类型（可不填） 默认 0=个人会员
+ 
+11. 个人中心
+/Home/member/ajax_member_info

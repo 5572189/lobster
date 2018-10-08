@@ -1,0 +1,17 @@
+<case value="attr">
+	<div class="form-group item_{$[type]form.name} {$[type]form.extra_class|default=''}">
+		<label class="left control-label">{$[type]form.title}：</label>
+		<div class="right">
+			<foreach name="attrList" item="vo" key="k" >
+				<div class="right" style="margin-top: 5px;width: 200px">
+				{$vo.name}：<input class="form-control input" name="attr[{$k}][attr_value]" value="{$vo.value}">
+				<input name="attr[{$k}][attr_id]" value="{$vo.id}" type="hidden">
+				<input name="attr[{$k}][attr_name]" value="{$vo.name}" type="hidden">
+				</div>
+			</foreach>
+		</div>
+	<script>
+
+	</script>
+</div>
+</case>

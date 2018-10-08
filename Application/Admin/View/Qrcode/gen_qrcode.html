@@ -1,0 +1,54 @@
+<extend name="$_admin_public_layout" />
+<block name="style">
+<link rel="stylesheet" type="text/css"
+	href="__CUI__/css/cui.extend.min.css">
+<include file="./Application/Common/Builder/style.html" /> </block>
+<block name="script"> <script>
+function getQrcode(){
+	var val= $('[name="val"]').val();
+	var url ="{:U('ajax_gen_qrcode')}";
+		$.ajax({
+			url:url,
+			type:'post',
+			dataType:'json',
+			data:{val:val},
+			success : function(data) {
+				console.log(data);
+				$('[name="qrcode"]').attr("src",data.data.url);
+			},
+			error:function(){
+				//alert('失败了');
+			}
+		});
+}
+</script> </block>
+<block name="main">
+<div class="panel builder formbuilder-box">
+	<div class="panel-body">
+		<form action="__SELF__" method="post"
+			class="form form-builder">
+			<div class="col-xs-12">
+				<div class="form-group item_val ">
+					<label class="left control-label">二维码内容：</label>
+					<div class="right">
+						<input type="text" class="form-control input text " name="val"
+							value="">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="right">
+						<img name="qrcode"/>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<button class="btn btn-primary submit ajax-post" onclick="javascript:getQrcode()" target-form="form">确定</button>
+					<button
+						class="btn btn-default return visible-md-inline visible-lg-inline"
+						onclick="javascript:history.back(-1);return false;">返回</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</block>

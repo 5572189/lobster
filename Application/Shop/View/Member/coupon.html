@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="renderer" content="webkit">
+    <title>PIZZAgram.</title>
+    <link rel="stylesheet" href="/webApp/static/style/css/weui/weui-index.css">
+    <link rel="stylesheet" href="/webApp/static/style/css/default/main.css">
+    <link rel="stylesheet" href="/webApp/static/style/css/page/personal/coupon.css">
+</head>
+<body>
+<div id="app">
+    <div class="content" v-cloak>
+        <div class="tab clearfix">
+            <span :class="{active: crnStatus == 0}" @click="tab(0)">未使用Unused</span>
+            <span :class="{active: crnStatus == 1}" @click="tab(1)">已使用Used</span>
+            <span :class="{active: crnStatus == 2}" @click="tab(2)">已失效Expired</span>
+        </div>
+        <ul class="weui-tab__bd-item" v-if="crnStatus == 0" :class="{none: useNone}">
+            <li v-cloak v-for="(useCoupon, index) in coupons.use" :key="index">
+                <div class="top">
+                    <div class="d left">
+                        <div v-if="useCoupon.cate == 4" class="half">
+                            <span class="blod">5折美食体验券<br></span>
+                            <span>50% OFF COUPON</span>
+                        </div>
+                        <div v-else class="price">
+                            <span>NS券</span>
+                            <span v-text="useCoupon.giving_money+'RMB'"></span>
+                        </div>
+                        <span class="time" v-text="'有效期：'+useCoupon.start_time +' '+ useCoupon.end_time"></span><br>
+                        <span class="time_en" v-text="'Validity：'+useCoupon.start_time +' '+ useCoupon.end_time"></span>
+                    </div>
+                    <div class="d right">
+                        <span>未使用 Unused</span>
+                        <span v-if="useCoupon.cate == 4" >门店用餐使用<br>Store ordering use</span>
+                        <span v-else v-html="'满'+useCoupon.money+'可用'+'<br>'+'Over'+useCoupon.money+'is available'"></span>
+                    </div>
+                </div>
+                <div class="btm">
+                    <p class="adress">
+                        <span v-text="'地址：'+useCoupon.address"></span><br>
+                        <span class="adress-en" v-text="'Address:'+useCoupon.address_en"></span>
+                    </p>
+                </div>
+            </li>
+            <div class="weui-loadmore" v-if="usePageLoad" v-cloak>
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span>
+            </div>
+            <div class="none-bg" v-if="useNone">
+                <p>
+                    暂时没有优惠券<br>
+                    No coupon at the moment
+                </p>
+            </div>
+        </ul>
+        <ul class="weui-tab__bd-item" v-if="crnStatus == 1" :class="{none: unUseNone}">
+            <li class="used" v-cloak v-for="(unUseCoupon, index) in coupons.unUse" :key="index">
+                <div class="top">
+                    <div class="d left">
+                        <div v-if="unUseCoupon.cate == 4" class="half">
+                            <span class="blod">5折美食体验券<br></span>
+                            <span>50% OFF COUPON</span>
+                        </div>
+                        <div v-else class="price">
+                            <span>NS券</span>
+                            <span v-text="unUseCoupon.giving_money+'RMB'"></span>
+                        </div>
+                        <span class="time" v-text="'有效期：'+unUseCoupon.start_time +' '+ unUseCoupon.end_time"></span><br>
+                        <span class="time_en" v-text="'Validity：'+unUseCoupon.start_time +' '+ unUseCoupon.end_time"></span>
+                    </div>
+                    <div class="d right">
+                        <span>已使用 Unused</span>
+                        <span v-if="unUseCoupon.cate == 4" >门店用餐使用<br>Store ordering use</span>
+                        <span v-else v-html="'满'+unUseCoupon.money+'可用'+'<br>'+'Over'+unUseCoupon.money+'is available'"></span>
+                    </div>
+                </div>
+                <div class="btm">
+                    <p class="adress">
+                        <span v-text="'地址：'+unUseCoupon.address"></span><br>
+                        <span class="adress-en" v-text="'Address:'+unUseCoupon.address_en"></span>
+                    </p>
+                </div>
+            </li>
+            <div class="weui-loadmore" v-if="unUseNonePageLoad" v-cloak>
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span>
+            </div>
+            <div class="none-bg" v-if="unUseNone">
+                <p>
+                    暂时没有优惠券<br>
+                    No coupon at the moment
+                </p>
+            </div>
+        </ul>
+        <ul class="weui-tab__bd-item" v-if="crnStatus == 2" :class="{none: outTimeNone}">
+            <li class="used" v-cloak v-for="(effectCoupon, index) in coupons.effect" :key="index">
+                <div class="top">
+                    <div class="d left">
+                        <div v-if="effectCoupon.cate == 4" class="half">
+                            <span class="blod">5折美食体验券<br></span>
+                            <span>50% OFF COUPON</span>
+                        </div>
+                        <div v-else class="price">
+                            <span>NS券</span>
+                            <span v-text="effectCoupon.giving_money+'RMB'"></span>
+                        </div>
+                        <span class="time" v-text="'有效期：'+effectCoupon.start_time +' '+ effectCoupon.end_time"></span><br>
+                        <span class="time_en" v-text="'Validity：'+effectCoupon.start_time +' '+ effectCoupon.end_time"></span>
+                    </div>
+                    <div class="d right">
+                        <span>已失效 Unused</span>
+                        <span v-if="effectCoupon.cate == 4" >门店用餐使用<br>Store ordering use</span>
+                        <span v-else v-html="'满'+effectCoupon.money+'可用'+'<br>'+'Over'+effectCoupon.money+'is available'"></span>
+                    </div>
+                </div>
+                <div class="btm">
+                    <p class="adress">
+                        <span v-text="'地址：'+effectCoupon.address"></span><br>
+                        <span class="adress-en" v-text="'Address:'+effectCoupon.address_en"></span>
+                    </p>
+                </div>
+            </li>
+            <div class="weui-loadmore" v-if="outTimePageLoad" v-cloak>
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span>
+            </div>
+            <div class="none-bg" v-if="outTimeNone">
+                <p>
+                    暂时没有优惠券<br>
+                    No coupon at the moment
+                </p>
+            </div>
+        </ul>
+    </div>
+    <div class="end-title" @click="goUrl('{$nsWebHost}/shop.php?s=/pizza/recharge.html')" v-cloak>查看更多储值优惠Reserve value discount</div>
+</div>
+<script src="/webApp/require.js"></script>
+<script src="/webApp/static/script/personal/coupon.js"></script>
+</body>
+</html>
+

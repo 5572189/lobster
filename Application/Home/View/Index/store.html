@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="renderer" content="webkit">
+    <title>{$meta_title}</title>
+    <!--css-->
+    <link rel="stylesheet" href="/html/static/style/css/main.css?t={$clear_web}">
+    <link rel="stylesheet" href="/html/static/style/css/store.css?t={$clear_web}">
+    <link rel="stylesheet" href="/html/static/style/css/shop_detail.css?t={$clear_web}">
+</head>
+<body>
+<div id="app" v-cloak>
+    <!-- 导航下属分类 开始-->
+        <section class="nav_stores">
+            <div class="nav_stores_sidebar" v-if="stores.length != 1">
+                <ul>
+                    <li v-for="item in stores" :key="item.id" @click="sidebar_link(item.id)">
+                        <div>
+                            <img :src="item.index_pic" alt="">
+                            <p>{{item.city_en}} {{item.city}}</p>
+                        </div>
+                        <div>
+                            <p><i></i> <span>{{item.address}}</span></p>
+                            <a v-if="item.booking_stat != 0" :href="'/index.php?s=/home/index/shop_detail.html&id='+item.id"></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div v-else>
+                <div class="banner">
+                    <div class="swiper-container" id="banner">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" v-for="item in stores_detail.pics" :key="item.id">
+                                <img :src="item" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="about-us">
+                    <h2 class="title">{{stores_detail.title}}</h2>
+                    <span class="address">{{stores_detail.title_en}}</span>
+                    <p class="ab-text">
+                        {{stores_detail.content_en}}
+                        <br>
+                        {{stores_detail.content}}
+                    </p>
+                    <div class="ab-detail">
+                        <div class="item">{{stores_detail.open_hours}}</div>
+                        <div class="item">
+                            {{stores_detail.address}}
+                            <br>
+                            {{stores_detail.address_en}}
+                        </div>
+                        <div class="item"><a :href="'tel:'+stores_detail.telephone">{{stores_detail.telephone}}</a></div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- 导航下属分类 结束 -->
+    <footer-component current = "4"></footer-component>
+</div>
+</body>
+</html>
+<script src="/html/require.js?t={$clear_web}"></script>
+<script src="/html/static/script/store.js?t={$clear_web}"></script>

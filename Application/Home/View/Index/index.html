@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="renderer" content="webkit">
+    <title>{$meta_title}</title>
+    <!--css-->
+    <link rel="stylesheet" href="/html/static/style/css/main.css?t={$clear_web}">
+    <link rel="stylesheet" href="/html/static/style/css/index.css?t={$clear_web}">
+    <link rel="stylesheet" href="/html/lib/flipclock.css">
+</head>
+<body>
+<div id="app" v-cloak>
+    <!-- banner轮播 开始-->
+        <section class="index_banner">
+            <div class="swiper-container box_header_banner">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="item in bannerData" :key="item.id">
+                        <a :href="item.url">
+                            <img :src="item.cover_url" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination" :class="bannerData.length == 1?'active':''"></div>
+            </div>
+            <div class="banner_bg"></div>
+        </section>
+    <!-- banner轮播 结束 -->
+    <!-- 积分兑换 开始-->
+        <section class="index_integral" v-if="data_box.coupon != false">
+            <div class="index_integral_box">
+                <img src="/html/static/images/index/index_title_01.png" alt="">
+                <div class="slide-container">
+                    <div class="swiper-container integral_container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="integral_slide_top">
+                                    <div>
+                                        <p>现金券</p>
+                                        <p>COUPON</p>
+                                    </div>
+                                    <div>
+                                        <span>￥</span>30
+                                    </div>
+                                </div>
+                                <div class="integral_slide_bottom">
+                                    <a href="javascript:;">兑 换</a>
+                                    <span>1000积分</span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="integral_slide_top">
+                                    <div>
+                                        <p>套餐券</p>
+                                        <p>COUPON</p>
+                                    </div>
+                                    <div>
+                                        <span>￥</span>5
+                                    </div>
+                                </div>
+                                <div class="integral_slide_bottom">
+                                    <a href="javascript:;">兑 换</a>
+                                    <span>2500积分</span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="integral_slide_top">
+                                    <div>
+                                        <p>套餐券</p>
+                                        <p>COUPON</p>
+                                    </div>
+                                    <div>
+                                        <span>￥</span>5
+                                    </div>
+                                </div>
+                                <div class="integral_slide_bottom">
+                                    <a href="javascript:;">兑 换</a>
+                                    <span>2500积分</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="integral_more" href="javascript:;">MORE 更多</a>
+            </div>
+        </section>
+    <!-- 积分兑换 结束 -->
+    <!-- 活动中心 开始-->
+        <section class="activity_center">
+            <img src="/html/static/images/index/activity.png" alt="">
+        </section>
+    <!-- 活动中心 结束 -->
+    <!-- 门店 开始 -->
+        <section class="index_shop">
+            <div class="index_shop_title">
+                <img src="/html/static/images/index/index_title_02.png" alt="">
+            </div>
+            <div class="swiper-container box_shop_banner">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" :class="data_box.restaurant.length ==1 ?'active':''" v-for="item in data_box.restaurant"  :key="item.id">
+                        <div class="index_shop_box" @click="shopDetail_link(item.id)">
+                            <div class="index_shop_box_img">
+                                <img :src="item.index_pic" alt="">
+                                <p>{{item.city_en}} {{item.city}}</p>
+                            </div>
+                            <div class="index_shop_box_message">
+                                <i></i>
+                                <p>{{item.address}} {{item.address_en}}</p>
+                            </div>
+                            <a class="shop_go" v-if="item.booking_stat != 0" :href="'/index.php?s=/home/index/shop_detail.html&id='+item.id"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    <!-- 门店 结束 -->
+    <!-- 新闻 开始-->
+        <section class="index_news">
+            <div class="index_news_title">
+                <img src="/html/static/images/index/index_title_03.png" alt="">
+            </div>
+            <ul class="index_news_ul">
+                <li v-for="item in data_box.news">
+                    <a :href="'/index.php?s=/home/index/news_detail.html&id='+item.id">
+                        <div class="list_img">
+                            <img :src="item.cover" alt="">
+                        </div>
+                        <div class="list_news">
+                            <p><i></i> <span>{{item.news_date}}</span></p>
+                            <p>{{item.title}}</p>
+                            <p>{{item.title_en}}</p>
+                        </div>
+                    </a>
+
+                </li>
+            </ul>
+            <a class="news_more" href="/index.php?s=/home/index/news">MORE 更多</a>
+        </section>
+    <!-- 新闻 结束 -->
+    <footer-component></footer-component>
+</div>
+<canvas id="fizz"></canvas>
+</body>
+</html>
+<script src="/html/lib/jquery/jquery-3.2.1.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/html/require.js?t={$clear_web}"></script>
+<script src="/html/static/script/index.js?t={$clear_web}"></script>
+<script src="/html/lib/paopaoAnimate.js"></script>

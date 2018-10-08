@@ -1,0 +1,87 @@
+<extend name="$_admin_public_layout" />
+<block name="style">
+	<link rel="stylesheet" type="text/css" href="__CUI__/css/cui.extend.min.css">
+	<include file="./Application/Common/Builder/style.html" />
+</block>
+<block name="script">
+	<script type="text/javascript">     
+
+	</script>
+</block>
+<block name="js">
+</block>
+<block name="main">
+<!-- 主体内容区域 -->
+<div class="tab-content ct-tab-content">
+	<div class="builder formbuilder-box panel-body">
+	   
+		<!-- 顶部工具栏按钮 -->
+        <div class="builder-toolbar">
+            <div class="row"> 
+                <!-- 工具栏按钮 -->
+                <if condition="$canAdd"></if>
+                <div class="col-xs-12 col-sm-2 button-list clearfix">
+                    <div class="form-group">
+                        <a class="btn btn-primary" href="{:U('set_food_gift_add',array('shop_id'=>$shop_info['id']))}">新增</a>
+                    </div>
+                </div>
+
+                <div class="col-xs-12">
+					<div class="form-group item_title ">
+						<label class="left control-label">门店名称：{$shop_info.title}</label>						
+					</div>
+				</div>
+            </div>
+        </div>
+		<div class="builder-container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="builder-table">
+						<div class="panel panel-default table-responsive">
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+								<tr>	
+									<th>ID</th>								
+									<th>菜名</th>
+									<th>满足金额</th>
+									<th>实际数量</th>	
+									<th>排序</th>								
+									<th>操作</th>
+								</tr>
+								</thead>
+								<tbody class="tbodyClass">
+									<foreach name="list" item="v">
+										<tr>
+											<td>{$v['id']}</td>											
+											<td>{$v['name']}</td>
+											<td>{$v['money']}</td> 
+											<td>{$v['num']}</td>
+											<td>{$v['order']}</td>
+											<td>
+												<a class="label label-primary" href="{:U('set_food_gift_edit',array('id'=>$v['id']))}">编辑</a>
+											</td>
+										</tr>
+									</foreach>
+								</tbody>
+							</table>
+						</div>
+						<notempty name="pages">
+	                        <ul class="pagination">
+	                            {$pages}
+	                        </ul>
+	                    </notempty>
+					</div>				
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+</block>
+<block name="script">
+	<script type="text/javascript">
+	$(function (){
+		
+	});
+	</script>
+</block>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="renderer" content="webkit">
+    <title>{$meta_title}</title>
+    <!--css-->
+    <link rel="stylesheet" href="/html/static/style/css/main.css">
+    <link rel="stylesheet" href="/html/static/style/css/personal.css?t={$clear_web}">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div class="xia_bg">
+            <img src="/html/static/images/xia_bg.png" alt="">
+        </div>
+        <div class="personal">
+            <img  class="personal_header" :src="messageData.avatar" alt="">
+            <p class="personal_name">{{messageData.username}}</p>
+            <p class="personal_phone">Phone : {{messageData.mobile}}</p>
+        </div>
+        <a class="personal_logout" href="/index.php?s=/member/login">
+            退 出 | LOGOUT
+        </a>
+        <footer-component current="5"></footer-component>
+    </div>
+</body>
+
+</html>
+<script src="/html/require.js?t={$clear_web}"></script>
+<script src="/html/static/script/personal.js?t={$clear_web}"></script>

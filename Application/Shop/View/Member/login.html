@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="renderer" content="webkit">
+    <title>PIZZAgram.</title>
+
+    <link rel="stylesheet" href="/webApp/static/style/css/weui/weui-index.css">
+    <link rel="stylesheet" href="/webApp/static/style/css/default/main.css">
+    <link rel="stylesheet" href="/webApp/static/style/css/page/loginRegister/login.css">
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="alertWrap" v-if="alertType">
+        <div class="content">
+            <p class="title">请选择个人或企业账户登录</p>
+            <div class="item"><span :class="{active: user_type == 0}" @click="user_type = 0"></span>个人Personal</div>
+            <div class="item t"><span :class="{active: user_type == 2}" @click="user_type = 2"></span>企业Enterprise</div>
+            <div class="btn" @click="selctyTypeLogin">确定<br>Determine</div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="top-bg"></div>
+        <div class="ipt">
+            <input type="number" maxlength="11" minlength="11" v-model="phone" placeholder="Mobile Phone | 手机">
+        </div>
+        <div class="ipt">
+            <input type="text" v-model="code" placeholder="Verification Code | 验证码">
+        </div>
+        <div
+                class="getCode"
+                :class="{active:status}"
+                @click="getSms"
+                v-html="loadText"
+                :disabled="status"
+        >Get Authentication Code | 获取验证码</div>
+        <if condition="$type eq 2">
+            <div class="login" @click="submit">Register | 注册</div>
+            <else/>
+            <div class="login" @click="submit">Sign In | 登录</div>
+        </if>
+
+    </div>
+</div>
+<script>
+    var _refer = '{$refer}';
+    var nsWebHost = '{$nsWebHost}';
+</script>
+<script src="/webApp/require.js"></script>
+<script src="/webApp/static/script/loginRegister/login.js"></script>
+</body>
+</html>

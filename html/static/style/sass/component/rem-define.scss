@@ -1,0 +1,9 @@
+
+//media
+@for $i from 0 through 680 {
+  @media screen and (width: (320+$i)+px) {
+    html {
+      font-size: (16.97+$i*0.0544)+px !important;
+    };
+  };
+}
